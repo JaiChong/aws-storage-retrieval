@@ -8,13 +8,13 @@ export default function App() {
   const [consoleOut, setConsoleOut] = useState('Hello!  Click one of the bottoms to the left to begin.')
   const lambdaReq = async (buttonName, reqBody) => {
     try {
-      const resp = await fetch(lambdaFuncURL, {
-        method:  'POST',
-        body:    JSON.stringify(reqBody),
-        headers: { 'Content-Type': 'application/json' }
+      const resp = await fetch(lambdaFuncURL, {method:'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(reqBody)
       })
-      const data = await resp.json()
-      setConsoleOut((consoleOut) => consoleOut + '\n\n' + JSON.stringify(data))
+      const data      = await resp.json()
+      const formatted = JSON.stringify(data, null, 2).replace(/\\n/g, '\n')
+      setConsoleOut((consoleOut) => consoleOut + '\n\n' + formatted)
     }
     catch(err) {  setConsoleOut((consoleOut) => consoleOut + '\n\n' + buttonName + ' Request to Lambda Failed: ' + err) }
   }
@@ -50,7 +50,7 @@ export default function App() {
   const [lastName,  setLastName ] = useState('')
   const query = () => {
     const lambdaReqBody = {
-      button:     'queryData',
+      button:     'query',
       last_name:  lastName,
       first_name: firstName
     }
