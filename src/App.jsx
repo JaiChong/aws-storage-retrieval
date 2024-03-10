@@ -5,15 +5,16 @@ import './App.css'
 export default function App() {
   // All buttons
   const lambdaEndpoint              = 'https://patp47vn1j.execute-api.us-west-2.amazonaws.com/default/lambdaP4'
+  const lambdaFuncURL               = 'https://uoydrd7mkjcqze7l7c4vjameti0xjmej.lambda-url.us-west-2.on.aws/'
   const [consoleOut, setConsoleOut] = useState('Hello!  Click one of the bottoms to the left to begin.')
   const lambdaReq = async (buttonName, reqBody) => {
     try {
-      resp = await fetch(lambdaEndpoint, {
+      const resp = await fetch(lambdaFuncURL, {
         method:  'POST',
         body:    JSON.stringify(reqBody),
         headers: { 'Content-Type': 'application/json' }
       })
-      data = await resp.json()
+      const data = await resp.json()
       setConsoleOut((consoleOut) => consoleOut + '\n\n' + JSON.stringify(data))
     }
     catch(err) { setConsoleOut((consoleOut) => consoleOut + '\n\n' + buttonName + ' Request to Lambda Failed: ' + err) }
