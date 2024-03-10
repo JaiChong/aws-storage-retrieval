@@ -2,62 +2,128 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 
-function App() {
-  // Update Database
-  const [data, setData] = useState(null)
-  const loadData = () => {
-    
-  }
-  const clearData = () => {
-    
+export default function App() {
+  // All buttons
+  const lambdaEndpoint              = 'https://patp47vn1j.execute-api.us-west-2.amazonaws.com/default/lambdaP4'
+  const [consoleOut, setConsoleOut] = useState('Hello!  Click one of the bottoms to the left to begin.')
+  const lambdaReq = async (buttonName, reqBody) => {
+    try {
+      resp = await fetch(lambdaEndpoint, {
+        method:  'POST',
+        body:    JSON.stringify(reqBody),
+        headers: { 'Content-Type': 'application/json' }
+      })
+      data = await resp.json()
+      setConsoleOut((consoleOut) => consoleOut + '\n\n' + JSON.stringify(data))
+    }
+    catch(err) { setConsoleOut((consoleOut) => consoleOut + '\n\n' + buttonName + ' Request to Lambda Failed: ' + err) }
   }
   
-  // Search Database
+  // Load Data button
+  const sourceS3Object = 'https://s3-us-west-2.amazonaws.com/css490/input.txt'
+  const loadData = async () => {
+    try {
+      const sourceResp = await fetch(sourceS3Object)
+      const sourceData = await sourceResp.text()
+      
+      const lambdaReqBody = {
+        button: 'loadData',
+        key:    'input.txt',
+        object: sourceData
+      }
+      lambdaReq('Load Data', lambdaReqBody)
+    }
+    catch(err) { setConsoleOut((consoleOut) => consoleOut + '\n\n' + 'Load Data Request to Source S3 Object Failed: ' + err) }
+  }
+
+  // Clear Data button
+  const clearData = () => {
+    const lambdaReqBody = {
+      button: 'clearData',
+      key:    'input.txt'
+    }
+    lambdaReq('Clear Data', lambdaReqBody)
+  }
+  
+  // Query button
   const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
+  const [lastName,  setLastName ] = useState('')
   const query = () => {
-    
+    const lambdaReqBody = {
+      button:     'queryData',
+      last_name:  lastName,
+      first_name: firstName
+    }
+    lambdaReq('Query', lambdaReqBody)
   }
 
   return (
     <div className="App">
       <h1>CSS 436 P4: Website + Storage</h1>
+      
       <div className="body">
         <table align="center">
-          <tr>
-            <td>
-              <h2>Update Database</h2>
-              <button onClick={loadData}>Load Data</button>
-              &ensp;
-              <button onClick={clearData}>Clear Data</button>
-            </td>
-            <td style={{minWidth:'5em'}} />
-            <td>
-              <h2>Search Database</h2>
-              <table>
-                <tr>
-                  <td>
-                    <input type="text" placeholder="Enter a first name..." value={firstName}
-                      onChange={event => setFirstName(event.target.value)} />
-                    <br />
-                    <input type="text" placeholder="Enter a last name..." value={lastName}
-                      onChange={event => setLastName(event.target.value)} />
-                  </td>
-                  &ensp;
-                  <td>
-                    <button onClick={query}>Query</button>
-                  </td>
-                </tr>
-              </table>
-            </td>
-            <td style={{minWidth:'5em'}} />
-            <td>
-              <h2>Search Results</h2>
-              uwu
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+
+              {/* Left column */}
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+
+                      {/* Top-left cell */}
+                      <td>
+                        <h2>Update Database</h2>
+                        <button onClick={clearData}>Clear Data</button>
+                        &ensp;
+                        <button onClick={loadData}>Load Data</button>
+                      </td>
+
+                    </tr>
+                    <tr>
+
+                      {/* Bottom-left cell */}
+                      <td>
+                        <h2 style={{'margin-bottom':'0.2rem'}}>Search Database</h2>
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <input type="text" placeholder="Enter a first name..." value={firstName}
+                                  onChange={event => setFirstName(event.target.value)} />
+                                <br />
+                                <input type="text" placeholder="Enter a last name..." value={lastName}
+                                  onChange={event => setLastName(event.target.value)} />
+                              </td>
+                              <td>
+                                &ensp;
+                                <button onClick={query}>Query</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              {/* Spacing between columns */}
+              <td style={{minWidth:'5rem'}} />
+              
+              {/* Right column */}
+              <td>
+                <h2>Output</h2>
+                <div id="console">{consoleOut}</div>
+              </td>
+              
+            </tr>
+          </tbody>
         </table>
       </div>
+
       <div className="credits">
         <p>
           Built using&nbsp;
@@ -75,5 +141,3 @@ function App() {
     </div>
   )
 }
-
-export default App
