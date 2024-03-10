@@ -4,8 +4,7 @@ import './App.css'
 
 export default function App() {
   // All buttons
-  const lambdaEndpoint              = 'https://patp47vn1j.execute-api.us-west-2.amazonaws.com/default/lambdaP4'
-  const lambdaFuncURL               = 'https://uoydrd7mkjcqze7l7c4vjameti0xjmej.lambda-url.us-west-2.on.aws/'
+  const lambdaFuncURL               = 'https://d4kp46mntnq3egbvsnlfruggnu0bimre.lambda-url.us-west-2.on.aws/'
   const [consoleOut, setConsoleOut] = useState('Hello!  Click one of the bottoms to the left to begin.')
   const lambdaReq = async (buttonName, reqBody) => {
     try {
@@ -17,7 +16,7 @@ export default function App() {
       const data = await resp.json()
       setConsoleOut((consoleOut) => consoleOut + '\n\n' + JSON.stringify(data))
     }
-    catch(err) { setConsoleOut((consoleOut) => consoleOut + '\n\n' + buttonName + ' Request to Lambda Failed: ' + err) }
+    catch(err) {  setConsoleOut((consoleOut) => consoleOut + '\n\n' + buttonName + ' Request to Lambda Failed: ' + err) }
   }
   
   // Load Data button
@@ -86,7 +85,7 @@ export default function App() {
 
                       {/* Bottom-left cell */}
                       <td>
-                        <h2 style={{'margin-bottom':'0.2rem'}}>Search Database</h2>
+                        <h2 style={{marginBottom:'0.2rem'}}>Search Database</h2>
                         <table>
                           <tbody>
                             <tr>
