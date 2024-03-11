@@ -46,6 +46,7 @@ h2 {
   overflow:    auto;
   padding:     10px;
   background:  #000;
+  color:     #FFF;    
   text-align:  left;
   font-family: monospace;
   white-space: pre-wrap;
