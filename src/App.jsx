@@ -5,7 +5,8 @@ import './App.css'
 export default function App() {
   // All buttons
   const lambdaFuncURL               = 'https://d4kp46mntnq3egbvsnlfruggnu0bimre.lambda-url.us-west-2.on.aws/'
-  const [consoleOut, setConsoleOut] = useState('Hello!  Click one of the buttons to the left to begin.\n\nSource Data: https://s3-us-west-2.amazonaws.com/css490/input.txt\n(NOTE: source is not my own -> Last/First Name order may swap -> must be swapped in query)')
+  const [consoleOut, setConsoleOut] = useState('Hello!  This application updates and searches data (see left).\n\nSource Data Format (line breaks delimit entries):\n  \"LastName FirstName attr1=val1 attr2=val2 ... attrN=valN\"\n\nSource Data Examples:\n  https://jaichong-p4.s3.us-west-2.amazonaws.com/test1.txt\n  https://jaichong-p4.s3.us-west-2.amazonaws.com/test2.txt')
+  const [sourceS3Object, setSourceS3Object] = useState('');
   const lambdaReq = async (buttonName, reqBody) => {
     try {
       const resp = await fetch(lambdaFuncURL, {method:'POST',
@@ -20,7 +21,7 @@ export default function App() {
   }
   
   // Load Data button
-  const sourceS3Object = 'https://s3-us-west-2.amazonaws.com/css490/input.txt'
+  // const sourceS3Object = 'https://s3-us-west-2.amazonaws.com/css490/input.txt'
   const loadData = async () => {
     try {
       const sourceResp = await fetch(sourceS3Object)
@@ -75,6 +76,9 @@ export default function App() {
                       {/* Top-left cell */}
                       <td>
                         <h2>Update Database</h2>
+                        <input type="text" placeholder="Enter a source data text file URL..." value={sourceS3Object}
+                          onChange={event => setSourceS3Object(event.target.value)} style={{width:"14rem", marginBottom:"0.5rem"}} />
+                        <br />
                         <button onClick={clearData}>Clear Data</button>
                         &ensp;
                         <button onClick={loadData}>Load Data</button>
@@ -85,16 +89,16 @@ export default function App() {
 
                       {/* Bottom-left cell */}
                       <td>
-                        <h2 style={{marginBottom:'0.2rem'}}>Search Database</h2>
+                        <h2>Search Database</h2>
                         <table>
                           <tbody>
                             <tr>
                               <td>
                                 <input type="text" placeholder="Enter a first name..." value={firstName}
-                                  onChange={event => setFirstName(event.target.value)} />
+                                  onChange={event => setFirstName(event.target.value)} style={{width:"8.5rem"}} />
                                 <br />
                                 <input type="text" placeholder="Enter a last name..." value={lastName}
-                                  onChange={event => setLastName(event.target.value)} />
+                                  onChange={event => setLastName(event.target.value)} style={{width:"8.5rem"}} />
                               </td>
                               <td>
                                 &ensp;
@@ -111,7 +115,7 @@ export default function App() {
               </td>
 
               {/* Spacing between columns */}
-              <td style={{minWidth:'5rem'}} />
+              <td style={{minWidth:'5vw'}} />
               
               {/* Right column */}
               <td>
