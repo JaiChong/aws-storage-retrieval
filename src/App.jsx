@@ -92,7 +92,7 @@ export default function App() {
                         <h2>Search Database</h2>
                         <table>
                           <tbody>
-                            <tr>
+                            <tr style={{verticalAlign:"middle"}}>
                               <td>
                                 <input type="text" placeholder="Enter a first name..." value={firstName}
                                   onChange={event => setFirstName(event.target.value)} style={{width:"8.5rem"}} />
