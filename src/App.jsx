@@ -5,7 +5,7 @@ import './App.css'
 export default function App() {
   // All buttons
   const lambdaFuncURL               = 'https://d4kp46mntnq3egbvsnlfruggnu0bimre.lambda-url.us-west-2.on.aws/'
-  const [consoleOut, setConsoleOut] = useState('Hello!  Click one of the buttons to the left to begin.\n\nSource Data: https://s3-us-west-2.amazonaws.com/css490/input.txt\n(NOTE: First Name / Last Name order may swap over time)')
+  const [consoleOut, setConsoleOut] = useState('Hello!  Click one of the buttons to the left to begin.\n\nSource Data: https://s3-us-west-2.amazonaws.com/css490/input.txt\n(NOTE: source is not my own -> Last/First Name order may swap -> must be swapped in query)')
   const lambdaReq = async (buttonName, reqBody) => {
     try {
       const resp = await fetch(lambdaFuncURL, {method:'POST',
