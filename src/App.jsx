@@ -24,8 +24,8 @@ export default function App() {
   // const sourceS3Object = 'https://s3-us-west-2.amazonaws.com/css490/input.txt'
   const loadData = async () => {
     try {
-      if (sourceS3Object != '') { const sourceResp = await fetch(sourceS3Object) }
-      else                      { const sourceResp = '' }
+      let sourceResp = ''
+      if (sourceS3Object != '') { sourceResp = await fetch(sourceS3Object) }
       const sourceData = await sourceResp.text()
       
       const lambdaReqBody = {
