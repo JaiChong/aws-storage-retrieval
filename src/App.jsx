@@ -4,8 +4,8 @@ import './App.css'
 
 export default function App() {
   // All buttons
-  const lambdaFuncURL               = 'https://d4kp46mntnq3egbvsnlfruggnu0bimre.lambda-url.us-west-2.on.aws/'
-  const [consoleOut, setConsoleOut] = useState('Hello!  This application updates and searches data (see left).\n\nSource Data Format (line breaks delimit entries):\n  \"LastName FirstName attr1=val1 attr2=val2 ... attrN=valN\"\n\nSource Data Examples:\n  https://jaichong-p4.s3.us-west-2.amazonaws.com/test1.txt\n  https://jaichong-p4.s3.us-west-2.amazonaws.com/test2.txt')
+  const lambdaFuncURL                       = 'https://d4kp46mntnq3egbvsnlfruggnu0bimre.lambda-url.us-west-2.on.aws/'
+  const [consoleOut, setConsoleOut]         = useState('Hello!  This application updates and searches data (see left).\n\nSource Data Format (line breaks delimit entries):\n  \"LastName FirstName attr1=val1 attr2=val2 ... attrN=valN\"\n\nSource Data Examples:\n  https://jaichong-p4.s3.us-west-2.amazonaws.com/test1.txt\n  https://jaichong-p4.s3.us-west-2.amazonaws.com/test2.txt')
   const [sourceS3Object, setSourceS3Object] = useState('');
   const lambdaReq = async (buttonName, reqBody) => {
     try {
@@ -15,16 +15,17 @@ export default function App() {
       })
       const data      = await resp.json()
       const formatted = JSON.stringify(data, null, 2).replace(/\\n/g, '\n')
-      setConsoleOut((consoleOut) => consoleOut + '\n\n' + formatted)
+      setConsoleOut((consoleOut) => consoleOut + '\n\n' + formatted + '\n\nAttempted request:\n  ' + JSON.stringify(reqBody))
     }
-    catch(err) {  setConsoleOut((consoleOut) => consoleOut + '\n\n' + buttonName + ' Request to Lambda Failed: ' + err) }
+    catch(err) {  setConsoleOut((consoleOut) => consoleOut + '\n\n' + buttonName + ' Request to Lambda Failed: ' + err + '\n\nAttempted request:\n  ' + JSON.stringify(reqBody)) }
   }
   
   // Load Data button
   // const sourceS3Object = 'https://s3-us-west-2.amazonaws.com/css490/input.txt'
   const loadData = async () => {
     try {
-      const sourceResp = await fetch(sourceS3Object)
+      if (sourceS3Object != '') { const sourceResp = await fetch(sourceS3Object) }
+      else                      { const sourceResp = '' }
       const sourceData = await sourceResp.text()
       
       const lambdaReqBody = {
