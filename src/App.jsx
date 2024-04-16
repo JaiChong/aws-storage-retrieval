@@ -15,19 +15,22 @@ export default function App() {
       })
       const data      = await resp.json()
       const formatted = JSON.stringify(data, null, 2).replace(/\\n/g, '\n')
-      setConsoleOut((consoleOut) => consoleOut + '\n\n' + formatted + '\n\nAttempted request:\n  ' + JSON.stringify(reqBody))
+      setConsoleOut((consoleOut) => consoleOut + '\n\n' + formatted)
     }
-    catch(err) {  setConsoleOut((consoleOut) => consoleOut + '\n\n' + buttonName + ' Request to Lambda Failed: ' + err + '\n\nAttempted request:\n  ' + JSON.stringify(reqBody)) }
+    catch(err) {  setConsoleOut((consoleOut) => consoleOut + '\n\n' + buttonName + ' Request to Lambda Failed: ' + err) }
   }
   
   // Load Data button
   // const sourceS3Object = 'https://s3-us-west-2.amazonaws.com/css490/input.txt'
   const loadData = async () => {
     try {
-      let sourceResp = ''
-      if (sourceS3Object != '') { sourceResp = await fetch(sourceS3Object) }
+      const sourceResp = await fetch(sourceS3Object)
       const sourceData = await sourceResp.text()
       
+      if (sourceData.charAt(0) == '<') {
+        throw new Error('Invalid URL')
+      }
+
       const lambdaReqBody = {
         button: 'loadData',
         key:    'input.txt',
