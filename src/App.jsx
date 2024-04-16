@@ -60,7 +60,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>CSS 436 P4: Website + Storage</h1>
+      <h1>Cloud Computing P4: Website & Storage</h1>
       
       <div className="body">
         <table align="center">
@@ -130,17 +130,32 @@ export default function App() {
 
       <div className="credits">
         <p>
-          Built using&nbsp;
+          Built using:
           <a href="https://vitejs.dev" target="_blank">
-            <img src="/vite.svg" className="logo" alt="Vite logo" />
+            <img src="/vite.svg" className="vite" alt="Vite logo" />
           </a>
-          &nbsp;Vite +&nbsp;
           <a href="https://reactjs.org" target="_blank" >
-            <img src={reactLogo} className="logo react" alt="React logo" />
+            <img src={reactLogo} className="react" alt="React logo" />
           </a>
-          &nbsp;React
+          <a href="https://aws.amazon.com/amplify/" target="_blank">
+            <img src="https://d3rrzw75sdtfe5.cloudfront.net/icon/9da5a168cf8194c8ee5ed192a443d563-674375b53bc8ae94f48cfdb5c81e8363.svg" className="amplify" alt="AWS Amplify logo" />
+          </a>
+          <a href="https://aws.amazon.com/lambda/" target="_blank">
+            <img src="https://d3rrzw75sdtfe5.cloudfront.net/icon/945f3fc449518a73b9f5f32868db466c-926961f91b072604c42b7f39ce2eaf1c.svg" className="lambda" alt="AWS Lambda logo" />
+          </a>
+          <a href="https://aws.amazon.com/s3/" target="_blank">
+            <img src="https://d3rrzw75sdtfe5.cloudfront.net/icon/c0828e0381730befd1f7a025057c74fb-43acc0496e64afba82dbc9ab774dc622.svg" className="s3" alt="AWS S3 logo" />
+          </a>
+          <a href="https://aws.amazon.com/dynamodb/" target="_blank">
+            <img src="https://d3rrzw75sdtfe5.cloudfront.net/icon/6f419a45e63123b4c16bd679549610f6-87862c68693445999110bbd6a467ce88.svg" className="dynamodb" alt="AWS DynamoDB logo" />
+          </a>
         </p>
-        <p>Written by Jaimi Chong</p>
+        <p>
+          Written by:&nbsp;
+          <a href="https://github.com/JaiChong/" className="author" target="_blank">
+            Jaimi Chong
+          </a>
+        </p>
       </div>
     </div>
   )

@@ -4,39 +4,18 @@
   padding: 2rem;
   text-align: center;
 }
-.logo {
-  height: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 0.75em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 0.75em #61dafbaa);
-}
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 
-/* Additions */
+/* Top */
 h1 {
+  font-size:     3rem !important;
   position:      fixed;
   top:           0;
   left:          0;
   right:         0;
-  margin-bottom: 0;
+  margin-bottom: 0; 
 }
+
+/* Middle */
 h2 {
   margin-bottom:  0.2rem;
 }
@@ -50,8 +29,9 @@ td {
   padding: 0;
 }
 #console {
-  width:       30rem;
+  width:       40vw;
   height:      40vh;
+  min-width:   30rem;
   min-height:  10rem;
   overflow:    auto;
   margin:      4px;
@@ -62,19 +42,76 @@ td {
   font-family: monospace;
   white-space: pre-wrap;
 }
+
+/* Bottom */
 .credits {
   position: fixed;
   bottom:   4vh;
   left:     0;
   right:    0;
-  /* margin-left: auto;
-  margin-right: auto; */
 }
-.credits > p {
-  color:           #888;
+/* Bottom, Text */
+.credits p {
+  color:           #ffffff40;
   display:         flex;
   align-items:     middle;
   justify-content: center;
-  font-size: 0.8rem;
-  margin: 0;
+  font-size:       0.8rem;
+  margin:          0.4rem;
+}
+.credits a {
+  color:  #ffffff80;
+}
+.author {
+  will-change:    auto          !important;
+  transition:     filter  300ms !important;
+  transition:     color   300ms !important;
+}
+.author:hover {
+  color:  #ffffff;
+  filter: drop-shadow(0 0 0.5em #0048bb);
+}
+/* Bottom, Logos */
+.credits img {
+  height:         1.5em;
+  vertical-align: top;
+  margin-left:    0.25em;
+  opacity:        50%;
+  will-change:    auto          !important;
+  transition:     filter  300ms !important;
+  transition:     opacity 300ms !important;
+}
+.credits img:hover {
+  opacity:        100%;
+}
+.vite:hover {
+  filter:  drop-shadow(0 0 0.75em #646cffcc);
+}
+.react:hover {
+  filter:  drop-shadow(0 0 0.75em #61dafbaa);
+}
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .react {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+.amplify:hover{
+  filter:  drop-shadow(0 0 0.75em #dd0000aa);
+}
+.lambda:hover{
+  filter:  drop-shadow(0 0 0.75em #994800aa);
+}
+.s3:hover{
+  filter:  drop-shadow(0 0 0.75em #007738aa);
+}
+.dynamodb:hover{
+  filter:  drop-shadow(0 0 0.75em #0000ffcc);
 }
