@@ -64,7 +64,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>AWS IaaS<br />Storage/Retrieval Tool</h1>
+      <h1>AWS Storage/Retrieval Tool</h1>
       
       <div className="body">
         <table align="center">
