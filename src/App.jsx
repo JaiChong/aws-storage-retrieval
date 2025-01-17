@@ -63,76 +63,41 @@ export default function App() {
   }
 
   return (
-    <div className="App">
+    <div className="page-wrapper">
       <h1>AWS Storage/Retrieval Tool</h1>
       
-      <div className="body">
-        <table align="center">
-          <tbody>
-            <tr>
+      <div className="content-wrapper">
+        <div className="input-section">
+          <h2>Update Database</h2>
+          <input type="text" placeholder="Enter a source data text file URL..." value={sourceS3Object}
+            onChange={event => setSourceS3Object(event.target.value)} style={{width:"14rem", marginBottom:"0.5rem"}} />
+          <br />
+          <button onClick={clearData}>Clear Data</button>
+          &ensp;
+          <button onClick={loadData}>Load Data</button>
 
-              {/* Left column */}
-              <td>
-                <table>
-                  <tbody>
-                    <tr>
+          <h2>Search Database</h2>
+          <div className="search-container">
+            <div className="search-inputs">
+              <input type="text" placeholder="Enter a first name..." value={firstName}
+                onChange={event => setFirstName(event.target.value)} style={{width:"8.5rem"}} />
+              <br />
+              <input type="text" placeholder="Enter a last name..." value={lastName}
+                onChange={event => setLastName(event.target.value)} style={{width:"8.5rem"}} />
+            </div>
+            <div className="search-button">
+              <button onClick={query}>Query</button>
+            </div>
+          </div>
+        </div>
 
-                      {/* Top-left cell */}
-                      <td>
-                        <h2>Update Database</h2>
-                        <input type="text" placeholder="Enter a source data text file URL..." value={sourceS3Object}
-                          onChange={event => setSourceS3Object(event.target.value)} style={{width:"14rem", marginBottom:"0.5rem"}} />
-                        <br />
-                        <button onClick={clearData}>Clear Data</button>
-                        &ensp;
-                        <button onClick={loadData}>Load Data</button>
-                      </td>
-
-                    </tr>
-                    <tr>
-
-                      {/* Bottom-left cell */}
-                      <td>
-                        <h2>Search Database</h2>
-                        <table>
-                          <tbody>
-                            <tr style={{verticalAlign:"middle"}}>
-                              <td>
-                                <input type="text" placeholder="Enter a first name..." value={firstName}
-                                  onChange={event => setFirstName(event.target.value)} style={{width:"8.5rem"}} />
-                                <br />
-                                <input type="text" placeholder="Enter a last name..." value={lastName}
-                                  onChange={event => setLastName(event.target.value)} style={{width:"8.5rem"}} />
-                              </td>
-                              <td>
-                                &ensp;
-                                <button onClick={query}>Query</button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-
-              {/* Spacing between columns */}
-              <td style={{minWidth:'5vw'}} />
-              
-              {/* Right column */}
-              <td>
-                <h2>Output</h2>
-                <div id="console">{consoleOut}</div>
-              </td>
-              
-            </tr>
-          </tbody>
-        </table>
+        <div className="output-section">
+          <h2>Output</h2>
+          <div id="console">{consoleOut}</div>
+        </div>
       </div>
 
-      <div className="credits">
+      <div className="footer-wrapper">
         <p>
           Built using:
           <a href="https://vitejs.dev" target="_blank">

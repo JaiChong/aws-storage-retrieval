@@ -1,78 +1,107 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  max-width:    1280px;
+  margin:       0 auto;
+  padding:      2rem;
+  padding-top:  4rem;
+  text-align:   center;
 }
 
 /* Top */
 h1 {
-  font-size:     3rem !important;
-  position:      fixed;
-  top:           0;
-  left:          0;
-  right:         0;
-  margin-bottom: 0;
+  font-size:    3rem !important;
+  line-height:  1;
+  top:          0;
+  left:         0;
+  right:        0;
 }
 
 /* Middle */
+.content-wrapper {
+  display:          flex;
+  justify-content:  space-between;
+  align-items:      flex-start;
+  flex-wrap:        wrap;
+  gap:              4rem;
+} 
+.input-section {
+  width:          auto;
+  flex:           0 1 auto;
+  flex-direction: column;
+}
 h2 {
   margin-bottom:  0.2rem;
 }
-tr {
-  vertical-align: top;
+.search-container {
+  margin:           0 auto;
+  display:          flex;
+  justify-content:  center;
+  gap:              0.5rem;
 }
-input {
-  margin-top: -10rem !important;
+.search-inputs {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
 }
-td {
-  padding: 0;
+.search-button {
+  align-self: center;
+}
+.output-section {
+  flex:   0 1 auto;
+  width:  auto;
 }
 #console {
-  width:       40vw;
-  height:      40vh;
-  min-width:   30rem;
-  min-height:  10rem;
-  overflow:    auto;
-  margin:      4px;
-  padding:     10px;
-  background:  #000;
-  color:     #FFF;    
-  text-align:  left;
-  font-family: monospace;
-  white-space: pre-wrap;
+  min-width:    40vw;
+  min-height:   40vh;
+  overflow:     auto;
+  margin:       4px;
+  padding:      10px;
+  background:   #000;
+  color:        #FFF;    
+  text-align:   left;
+  font-family:  monospace;
+  white-space:  pre-wrap;
+}
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+    align-items:    center;
+    gap:            2rem;
+    width:          100%;
+  }
+  .output-section {
+    width:  100%;
+  }
+  #console {
+    /* min-width:  10vw; */
+  }
 }
 
 /* Bottom */
-.credits {
-  position: fixed;
-  bottom:   4vh;
-  left:     0;
-  right:    0;
+.footer-wrapper {
+  margin-top:     20vh;
 }
-/* Bottom, Text */
-.credits p {
-  color:           #ffffff40;
-  display:         flex;
-  align-items:     middle;
-  justify-content: center;
-  font-size:       0.8rem;
-  margin:          0.4rem;
+.footer-wrapper p {
+  color:            #ffffff40;
+  display:          flex;
+  align-items:      middle;
+  justify-content:  center;
+  font-size:        0.8rem;
+  margin:           0.4rem;
 }
-.credits a {
+.footer-wrapper a {
   color:  #ffffff80;
 }
 .author {
-  will-change:    auto          !important;
-  transition:     filter  300ms !important;
-  transition:     color   300ms !important;
+  will-change:  auto          !important;
+  transition:   filter  300ms !important;
+  transition:   color   300ms !important;
 }
 .author:hover {
   color:  #ffffff;
   filter: drop-shadow(0 0 0.5em #0048bb);
 }
 /* Bottom, Logos */
-.credits img {
+.footer-wrapper img {
   height:         1.5em;
   vertical-align: top;
   margin-left:    0.25em;
@@ -81,37 +110,37 @@ td {
   transition:     filter  300ms !important;
   transition:     opacity 300ms !important;
 }
-.credits img:hover {
-  opacity:        100%;
+.footer-wrapper img:hover {
+  opacity:  100%;
 }
 .vite:hover {
-  filter:  drop-shadow(0 0 0.75em #646cffcc);
+  filter: drop-shadow(0 0 0.75em #646cffff);
 }
 .react:hover {
-  filter:  drop-shadow(0 0 0.75em #61dafbaa);
+  filter: drop-shadow(0 0 0.75em #61dafbff);
 }
 @keyframes logo-spin {
   from {
-    transform: rotate(0deg);
+    transform:  rotate(0deg);
   }
   to {
-    transform: rotate(360deg);
+    transform:  rotate(360deg);
   }
 }
 @media (prefers-reduced-motion: no-preference) {
   .react {
-    animation: logo-spin infinite 20s linear;
+    animation:  logo-spin infinite 20s linear;
   }
 }
 .amplify:hover{
-  filter:  drop-shadow(0 0 0.75em #dd0000aa);
+  filter: drop-shadow(0 0 0.75em #dd0000ff);
 }
 .lambda:hover{
-  filter:  drop-shadow(0 0 0.75em #994800aa);
+  filter: drop-shadow(0 0 0.75em #994800ff);
 }
 .s3:hover{
-  filter:  drop-shadow(0 0 0.75em #007738aa);
+  filter: drop-shadow(0 0 0.75em #007738ff);
 }
 .dynamodb:hover{
-  filter:  drop-shadow(0 0 0.75em #0000ffcc);
+  filter: drop-shadow(0 0 0.75em #0000ffff);
 }
