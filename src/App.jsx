@@ -5,7 +5,7 @@ import './App.css'
 export default function App() {
   // All buttons
   const lambdaFuncURL                       = 'https://d4kp46mntnq3egbvsnlfruggnu0bimre.lambda-url.us-west-2.on.aws/'
-  const [consoleOut, setConsoleOut]         = useState('Hello!  This application updates and searches data (see left).\n\nSource Data Format (line breaks delimit entries):\n  \"LastName FirstName attr1=val1 attr2=val2 ... attrN=valN\"\n\nSource Data Examples:\n  https://jaichong-p4.s3.us-west-2.amazonaws.com/test1.txt\n  https://jaichong-p4.s3.us-west-2.amazonaws.com/test2.txt')
+  const [consoleOut, setConsoleOut]         = useState('Hello!  This application updates and searches data (see left/above).\n\nSource Data Format (line breaks delimit entries):\n  \"LastName FirstName attr1=val1 attr2=val2 ... attrN=valN\"\n\nSource Data Examples:\n  https://jaichong-p4.s3.us-west-2.amazonaws.com/test1.txt\n  https://jaichong-p4.s3.us-west-2.amazonaws.com/test2.txt')
   const [sourceS3Object, setSourceS3Object] = useState('');
   const lambdaReq = async (buttonName, reqBody) => {
     try {
