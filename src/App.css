@@ -72,7 +72,7 @@ h2 {
     width:  100%;
   }
   #console {
-    min-width:  auto;
+    min-width:  calc(100% - 4rem);
   }
 }
 
