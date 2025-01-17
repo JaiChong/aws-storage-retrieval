@@ -72,7 +72,7 @@ h2 {
     width:  100%;
   }
   #console {
-    /* min-width:  10vw; */
+    min-width:  auto;
   }
 }
 
