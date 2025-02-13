@@ -5,8 +5,8 @@ header, footer {
 main {
   z-index:    0;
   box-shadow:
-    0 -50vh 0vh 50vh #151515,
-    0  50vh 0vh 50vh #090909;
+    0 -50vh 0vh 50vh #EAEAEA,
+    0  50vh 0vh 50vh #F5F5F5;
 }
 
 /* ROOT */

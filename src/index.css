@@ -60,6 +60,14 @@ button:focus-visible {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #ddd;
+  }
+  main {
+    box-shadow:
+      0 -50vh 0vh 50vh #ddd,
+      0  50vh 0vh 50vh hsl(208, 5%, 10%);
+  }
+  .console {
+    background: hsl(208, 5%, 20%);
   }
 }
