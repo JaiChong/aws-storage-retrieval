@@ -30,6 +30,9 @@ h1, h2 {
   margin-top:     0;
   margin-bottom:  0.2rem;
 }
+#h2-hack {
+  margin-top: 19.92px !important;
+}
 h1 {
   font-size:  3rem;
 }
@@ -80,6 +83,9 @@ section {
     justify-content: center;
     gap: calc(480px - 28rem);
   }
+    #h2-hack {
+      margin-top: 0 !important;
+    }
 }
 
 /* MAIN, .SECTION-INPUT */

@@ -81,7 +81,7 @@ export default function App() {
         </div>
 
         <div>
-          <h2>Search Database</h2>
+          <h2 id="h2-hack">Search Database</h2>
           <article className="article-search-database">
             <div className="search-inputs">
               <input
