@@ -77,15 +77,17 @@ section {
     align-items:    center;
     gap:            1rem;
   }
-  section {
-    width:           480px;
-    flex-direction:  row;
-    justify-content: center;
-    gap: calc(480px - 28rem);
-  }
+  @media (min-width: 513px) {
+    section {
+      width:           480px;
+      flex-direction:  row;
+      justify-content: center;
+      gap:             calc(480px - 28rem);
+    }
     #h2-hack {
       margin-top: 0 !important;
     }
+  }
 }
 
 /* MAIN, .SECTION-INPUT */
@@ -114,16 +116,28 @@ section {
   width: 100%;
 }
 @media (max-width: 900px) {
-  .section-input > * > * {
-    width: 14rem; /* HACK: button values below scaled for 12rem, but h2 overflowed */
-  }
-    button {
-      padding: 0.48em 0.96em !important;
-      font-size: 0.8em !important;
-    }
   .article-search-database {
     gap: 0.5rem;  /* not scaled, but matches .article-modify-database's */
   }
+  @media (min-width: 513px) {
+    .section-input > * > * {
+      width: 14rem; /* HACK: button values below scaled for 12rem, but h2 overflowed */
+    }
+      button {
+        padding: 0.48em 0.96em !important;
+        font-size: 0.8em !important;
+      }
+  }
+}
+@media (max-width: 272px) {
+  .section-input {
+    width: calc(1500vw / 17);
+  }
+    button {
+      width:     calc((1500vw / 17 - 0.5rem) * 0.5);
+      padding:   calc(   60vw / 17) (120vw / 17) !important;
+      font-size: calc(  100vw / 17) !important;
+    }
 }
 
 /* MAIN, .SECTION-OUTPUT */
@@ -139,6 +153,11 @@ section {
   white-space:  pre-wrap;
   font-family:  monospace;
   color:        #FFF;    
+}
+@media (max-width: 512px) {
+  .section-output {
+    width: 93.75vw;
+  }
 }
 
 /* FOOTER */
