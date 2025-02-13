@@ -1,86 +1,142 @@
+/* Z-INDEXING */
+header, footer {
+  z-index:    1;
+}
+main {
+  z-index:    0;
+  box-shadow:
+    0 -50vh 0vh 50vh #151515,
+    0  50vh 0vh 50vh #090909;
+}
+
+/* ROOT */
 #root {
-  max-width:    1280px;
-  margin:       0 auto;
-  padding:      2rem;
-  padding-top:  4rem;
-  text-align:   center;
-}
-
-/* Top */
-h1 {
-  font-size:    3rem !important;
-  line-height:  1;
-  top:          0;
-  left:         0;
-  right:        0;
-}
-
-/* Middle */
-.content-wrapper {
-  display:          flex;
-  justify-content:  space-between;
-  align-items:      flex-start;
-  flex-wrap:        wrap;
-  gap:              4rem;
-} 
-.input-section {
-  width:          auto;
-  flex:           0 1 auto;
-  flex-direction: column;
-}
-h2 {
-  margin-bottom:  0.2rem;
-}
-.search-container {
-  margin:           0 auto;
-  display:          flex;
-  justify-content:  center;
-  gap:              0.5rem;
-}
-.search-inputs {
+  margin:         0 auto;
+  padding:        0;
   display:        flex;
   flex-direction: column;
-  align-items:    center;
+  text-align:     center;
 }
-.search-button {
-  align-self: center;
+#root > * {
+  padding:          3rem 2rem;
 }
-.output-section {
-  flex:   0 1 auto;
-  width:  auto;
-}
-#console {
-  min-width:    40vw;
-  min-height:   40vh;
-  overflow:     auto;
-  margin:       4px;
-  padding:      10px;
-  background:   #000;
-  color:        #FFF;    
-  text-align:   left;
-  font-family:  monospace;
-  white-space:  pre-wrap;
-}
-@media (max-width: 768px) {
-  #root {
-    padding: 0;
+  header {
+    padding-bottom: 1rem !important;
   }
-  .content-wrapper {
-    width:          auto;
-    flex-direction: column;
-    align-items:    center;
-    gap:            2rem;
+  footer {
+    padding-top:    1rem !important;
   }
-  #console {
-    min-width:  auto;
+h1, h2 {
+  margin-top:     0;
+  margin-bottom:  0.2rem;
+}
+h1 {
+  font-size:  3rem;
+}
+
+/* HEADER */
+header {
+  display:          flex;
+  justify-content:  center;
+}
+@media (max-width: 700px) {
+  header {
+    width:      400px;  /* prettier 2-line break */
+    align-self: center;
+  }
+}
+@media (max-width: 400px) { /* BUG: height starts expanding inversely to width */ 
+  header {
+    padding:    8vw;    /*  2rem/400px = 32px/400px = 0.08 */
+    max-width:  100%;   /*  BUG: maintained prettier 2-line break before adjusting MAIN responsiveness */
+  }
+  h1 {
+    font-size:  12vw;   /* 16rem/400px = 48px/400px = 0.12 */
   }
 }
 
-/* Bottom */
-.footer-wrapper {
-  margin-top:     20vh;
+/* MAIN */
+main {
+  display:          flex;
+  align-items:      flex-start;
+  justify-content:  center;
+  gap:              4rem;
 }
-.footer-wrapper p {
+section {
+  flex:           0 1 auto;
+  width:          auto;
+  display:        flex;
+  flex-direction: column;
+}
+@media (max-width: 900px) {
+  main {
+    flex-direction: column;
+    align-items:    center;
+    gap:            1rem;
+  }
+  section {
+    width:           480px;
+    flex-direction:  row;
+    justify-content: center;
+    gap: calc(480px - 28rem);
+  }
+}
+
+/* MAIN, .SECTION-INPUT */
+.section-input {
+  width:  15rem;
+}
+.article-modify-database {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       0.5rem;
+}
+.article-modify-database * {
+  flex: 1 1 auto;
+}
+  .article-modify-database input {
+    width: 100%;  /* future-proofing: for changes to .section-input width */
+  }
+.article-search-database {
+  display: flex;
+  gap:     1rem;  /* HACK: should be 0.5rem, but `.search-input input` widths don't update as parent shrinks */
+}
+.search-inputs {
+  flex: 0 1 auto;
+}
+.search-inputs input {
+  width: 100%;
+}
+@media (max-width: 900px) {
+  .section-input > * > * {
+    width: 14rem; /* HACK: button values below scaled for 12rem, but h2 overflowed */
+  }
+    button {
+      padding: 0.48em 0.96em !important;
+      font-size: 0.8em !important;
+    }
+  .article-search-database {
+    gap: 0.5rem;  /* not scaled, but matches .article-modify-database's */
+  }
+}
+
+/* MAIN, .SECTION-OUTPUT */
+.section-output {
+  width: 30rem;
+}
+.console {
+  height:       60vh;
+  padding:      5px 10px;
+  overflow:     auto;
+  background:   #000;
+  text-align:   left;
+  white-space:  pre-wrap;
+  font-family:  monospace;
+  color:        #FFF;    
+}
+
+/* FOOTER */
+footer p {
   color:            #ffffff40;
   display:          flex;
   align-items:      middle;
@@ -88,7 +144,7 @@ h2 {
   font-size:        0.8rem;
   margin:           0.4rem;
 }
-.footer-wrapper a {
+footer a {
   color:  #ffffff80;
 }
 .author {
@@ -100,8 +156,7 @@ h2 {
   color:  #ffffff;
   filter: drop-shadow(0 0 0.5em #0048bb);
 }
-/* Bottom, Logos */
-.footer-wrapper img {
+footer img {
   height:         1.5em;
   vertical-align: top;
   margin-left:    0.25em;
@@ -110,7 +165,7 @@ h2 {
   transition:     filter  300ms !important;
   transition:     opacity 300ms !important;
 }
-.footer-wrapper img:hover {
+footer img:hover {
   opacity:  100%;
 }
 .vite:hover {
