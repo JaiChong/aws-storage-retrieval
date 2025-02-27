@@ -18,7 +18,7 @@ main {
   text-align:     center;
 }
 #root > * {
-  padding:          3rem 2rem;
+  padding:          3rem 1rem;
 }
   header {
     padding-bottom: 1rem !important;
@@ -36,6 +36,13 @@ h1, h2 {
 h1 {
   font-size:  3rem;
 }
+@media (max-width: 150px) {
+  /* BUG: unstyled page height grows inversely as width shrinks <~150px */
+  /* introduced here rather than always since it cuts off box shadows */
+  #root {
+    overflow: hidden;
+  }
+}
 
 /* HEADER */
 header {
@@ -48,13 +55,12 @@ header {
     align-self: center;
   }
 }
-@media (max-width: 400px) { /* BUG: height starts expanding inversely to width */ 
+@media (max-width: 400px) {
   header {
-    padding:    8vw;    /*  2rem/400px = 32px/400px = 0.08 */
     max-width:  100%;   /*  BUG: maintained prettier 2-line break before adjusting MAIN responsiveness */
   }
   h1 {
-    font-size:  12vw;   /* 16rem/400px = 48px/400px = 0.12 */
+    font-size:  12vw;   /* 3rem/400px = 48px/400px = 0.12 */
   }
 }
 
@@ -77,75 +83,74 @@ section {
     align-items:    center;
     gap:            1rem;
   }
-  @media (min-width: 513px) {
+  @media (min-width: 34rem  /* = 544px */) {
     section {
-      width:           480px;
+      width:           100%;
       flex-direction:  row;
       justify-content: center;
-      gap:             calc(480px - 28rem);
+      gap:             2rem;
     }
     #h2-hack {
       margin-top: 0 !important;
     }
   }
 }
+@media (max-width: 17rem  /* = 272px */) {
+  section h2 {
+    font-size: calc(24 / 272 * 100vw);  /* 1.5rem = 24px */
+  }
+}
 
 /* MAIN, .SECTION-INPUT */
 .section-input {
   width:  15rem;
+  flex:   0 1 auto;
 }
+  .section-input > * > * {
+    width:  15rem;
+    gap:    0.5rem;
+  }
 .article-modify-database {
-  display:   flex;
-  flex-wrap: wrap;
-  gap:       0.5rem;
-}
-.article-modify-database * {
-  flex: 1 1 auto;
+  display:                grid;
+  grid-template-columns:  auto auto;
+  grid-template-rows:     auto auto;
 }
   .article-modify-database input {
-    width: 100%;  /* future-proofing: for changes to .section-input width */
+    grid-column: span 2;
   }
 .article-search-database {
   display: flex;
-  gap:     1rem;  /* HACK: should be 0.5rem, but `.search-input input` widths don't update as parent shrinks */
 }
-.search-inputs {
-  flex: 0 1 auto;
-}
-.search-inputs input {
-  width: 100%;
-}
+  .article-search-database input {
+    width: 100%;
+  }
 @media (max-width: 900px) {
-  .article-search-database {
-    gap: 0.5rem;  /* not scaled, but matches .article-modify-database's */
-  }
-  @media (min-width: 513px) {
-    .section-input > * > * {
-      width: 14rem; /* HACK: button values below scaled for 12rem, but h2 overflowed */
-    }
-      button {
-        padding: 0.48em 0.96em !important;
-        font-size: 0.8em !important;
-      }
+  .section-input {
+    width: auto;
   }
 }
-@media (max-width: 272px) {
-  .section-input {
-    width: calc(1500vw / 17);
+@media (max-width: 17rem /* = 272px */) {
+  .section-input,
+  .section-input > * > * {
+    width:     100%;
+    gap:       calc(8      / 272 * 100vw);
   }
-    button {
-      width:     calc((1500vw / 17 - 0.5rem) * 0.5);
-      padding:   calc(   60vw / 17) (120vw / 17) !important;
-      font-size: calc(  100vw / 17) !important;
-    }
+  .section-input input {
+    font-size: calc((80/6) / 272 * 100vw);  /* 0.83rem = (5/6)rem = (80/6)px */
+  }
+  .section-input button {
+    font-size: calc(16     / 272 * 100vw);
+  }
 }
 
 /* MAIN, .SECTION-OUTPUT */
 .section-output {
-  width: 30rem;
+  max-width: 32rem;
+  width:     100%;
 }
 .console {
   height:       60vh;
+  width:        100%;
   padding:      5px 10px;
   overflow:     auto;
   background:   #000;
@@ -154,9 +159,12 @@ section {
   font-family:  monospace;
   color:        #FFF;    
 }
-@media (max-width: 512px) {
-  .section-output {
-    width: 93.75vw;
+/* landscape tablets */
+@media (max-height: 900px) {
+  @media (min-width: 1000px) {
+    .console {
+      height: 50vh;
+    }
   }
 }
 
