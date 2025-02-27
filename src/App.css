@@ -159,11 +159,16 @@ section {
   font-family:  monospace;
   color:        #FFF;    
 }
-/* landscape tablets */
+@media (max-width: 900px) {
+  .console {
+    height: 52.5vh;
+  }
+}
 @media (max-height: 900px) {
   @media (min-width: 1000px) {
+    /* landscape tablets */
     .console {
-      height: 50vh;
+      height: 45vh;
     }
   }
 }
